@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mujoco model="NextageOpen">
+  <compiler angle="radian" meshdir="meshes" autolimits="true"/>
+  <option timestep="0.002" gravity="0 0 -9.81" integrator="implicitfast"/>
+  <default>
+    <joint limited="true" damping="0.2" armature="0.01"/>
+    <geom rgba="0.25 0.25 0.25 1" friction="0.8 0.1 0.1" margin="0.001"/>
+    <default class="visual">
+      <geom contype="0" conaffinity="0" density="0" group="2" rgba="0.2 0.2 0.2 1"/>
+    </default>
+    <default class="collision">
+      <geom group="3" rgba="0.7 0.7 0.7 0.15"/>
+    </default>
+  </default>
+  <asset>
+    <material name="body_white" rgba="0.95 0.95 0.95 1"/>
+    <material name="body_black" rgba="0.08 0.08 0.08 1"/>
+    <material name="body_gray" rgba="0.55 0.55 0.55 1"/>
+    <material name="visor_cyan" rgba="0.49 1 1 1"/>
+    <mesh name="CHEST_JOINT0_Link_mesh" file="CHEST_JOINT0_Link_mesh.stl"/>
+    <mesh name="HEAD_JOINT0_Link_mesh" file="HEAD_JOINT0_Link_mesh.stl"/>
+    <mesh name="HEAD_JOINT1_Link_mesh" file="HEAD_JOINT1_Link_mesh.stl"/>
+    <mesh name="LARM_JOINT0_Link_mesh" file="LARM_JOINT0_Link_mesh.stl"/>
+    <mesh name="LARM_JOINT1_Link_mesh" file="LARM_JOINT1_Link_mesh.stl"/>
+    <mesh name="LARM_JOINT2_Link_mesh" file="LARM_JOINT2_Link_mesh.stl"/>
+    <mesh name="LARM_JOINT3_Link_mesh" file="LARM_JOINT3_Link_mesh.stl"/>
+    <mesh name="LARM_JOINT4_Link_mesh" file="LARM_JOINT4_Link_mesh.stl"/>
+    <mesh name="RARM_JOINT0_Link_mesh" file="RARM_JOINT0_Link_mesh.stl"/>
+    <mesh name="RARM_JOINT1_Link_mesh" file="RARM_JOINT1_Link_mesh.stl"/>
+    <mesh name="RARM_JOINT2_Link_mesh" file="RARM_JOINT2_Link_mesh.stl"/>
+    <mesh name="RARM_JOINT3_Link_mesh" file="RARM_JOINT3_Link_mesh.stl"/>
+    <mesh name="RARM_JOINT4_Link_mesh" file="RARM_JOINT4_Link_mesh.stl"/>
+    <mesh name="WAIST_Link_mesh" file="WAIST_Link_mesh.stl"/>
+  </asset>
+  <worldbody>
+    <light pos="0 0 3" dir="0 0 -1" diffuse="1 1 1"/>
+<!--    <geom type="plane" size="3 3 0.1" rgba="0.9 0.9 0.9 1"/>-->
+    <body name="WAIST">
+      <inertial pos="0 0 0" mass="1000" fullinertia="20 20 20 0 0 0"/>
+      <geom class="visual" material="body_white" type="mesh" mesh="WAIST_Link_mesh" pos="0 0 0.97" euler="0 -0 0"/>
+      <geom class="collision" type="mesh" mesh="WAIST_Link_mesh" pos="0 0 0.97" euler="0 -0 0"/>
+      <body name="CHEST_JOINT0_Link" pos="0 0 0" euler="0 -0 0">
+        <joint type="hinge" name="CHEST_JOINT0" axis="0 0 1" damping="0.2" range="-2.84489 2.84489" actuatorfrcrange="-100 100"/>
+        <inertial pos="0 0 0" mass="3.0" fullinertia="0.0639575 0.0310845 0.0501107 -0.00022833 0.00011172 6.48e-05"/>
+        <geom class="visual" material="body_white" type="mesh" mesh="CHEST_JOINT0_Link_mesh" pos="0 0 0" euler="0 -0 0"/>
+        <geom class="collision" type="mesh" mesh="CHEST_JOINT0_Link_mesh" pos="0 0 0" euler="0 -0 0"/>
+        <body name="HEAD_JOINT0_Link" pos="0 0 0.5695" euler="0 -0 0">
+          <joint type="hinge" name="HEAD_JOINT0" axis="0 0 1" damping="0.2" range="-1.22173 1.22173" actuatorfrcrange="-100 100"/>
+          <inertial pos="-2.292e-05 0.00547848 -0.00784016" mass="0.317929" fullinertia="0.00027682 0.00013009 0.00020954 3e-08 -3.3e-07 -1.092e-05"/>
+          <geom class="visual" material="body_white" type="mesh" mesh="HEAD_JOINT0_Link_mesh" pos="0 0 0.5695" euler="0 -0 0"/>
+          <geom class="collision" type="mesh" mesh="HEAD_JOINT0_Link_mesh" pos="0 0 0.5695" euler="0 -0 0"/>
+          <body name="HEAD_JOINT1_Link" pos="0 0 0" euler="0 -0 0">
+            <joint type="hinge" name="HEAD_JOINT1" axis="0 1 0" damping="0.2" range="-0.349066 1.22173" actuatorfrcrange="-100 100"/>
+            <inertial pos="0 0 0" mass="0.0808593" fullinertia="1e-3 1e-3 1e-3 0 0 0"/>
+            <geom class="visual" material="body_white" type="mesh" mesh="HEAD_JOINT1_Link_mesh" pos="0 0 0" euler="0 -0 0"/>
+            <geom class="collision" type="mesh" mesh="HEAD_JOINT1_Link_mesh" pos="0 0 0" euler="0 -0 0"/>
+            <site name="l515_head_link" pos="0.067 0.001 0.210" euler="0.008 0.318 0.029" type="sphere" size="0.005" rgba="0.1 0.6 0.9 0.4"/>
+          </body>
+        </body>        <body name="LARM_JOINT0_Link" pos="0 0.145 0.370296" euler="-0.261799 0 0">
+          <joint type="hinge" name="LARM_JOINT0" axis="0 0 1" damping="0.2" range="-1.53589 1.53589" actuatorfrcrange="-150 150"/>
+          <inertial pos="-0.00226388 -0.00521383 0.0156081" mass="1.32626" fullinertia="0.00207537 0.00240295 0.00141912 0.00011276 8.927e-05 -4.57e-05"/>
+          <geom class="visual" material="body_black" type="mesh" mesh="LARM_JOINT0_Link_mesh" pos="0 0.145 0.370296" euler="-0.261799 0 0"/>
+          <geom class="collision" type="mesh" mesh="LARM_JOINT0_Link_mesh" pos="0 0.145 0.370296" euler="-0.261799 0 0"/>
+          <body name="LARM_JOINT1_Link" pos="0 0 0" euler="0 -0 0">
+            <joint type="hinge" name="LARM_JOINT1" axis="0 1 0" damping="0.2" range="-2.44346 1.0472" actuatorfrcrange="-200 200"/>
+            <inertial pos="-5.236e-05 0.0583134 -0.107061" mass="1.14898" fullinertia="0.0154168 0.0147117 0.0012658 9.95417e-07 3.38147e-06 0.00213719"/>
+            <geom class="visual" material="body_black" type="mesh" mesh="LARM_JOINT1_Link_mesh" pos="0 0 0" euler="0 -0 0"/>
+            <geom class="collision" type="mesh" mesh="LARM_JOINT1_Link_mesh" pos="0 0 0" euler="0 -0 0"/>
+            <body name="LARM_JOINT2_Link" pos="0 0.095 -0.25" euler="0 -0 0">
+              <joint type="hinge" name="LARM_JOINT2" axis="0 1 0" damping="0.2" range="-2.75762 0" actuatorfrcrange="-100 100"/>
+              <inertial pos="-2.254e-05 0.00167107 -0.0715116" mass="0.577518" fullinertia="0.00143966 0.00141763 0.0001972 -3e-07 1.2e-06 -7.596e-05"/>
+              <geom class="visual" material="body_black" type="mesh" mesh="LARM_JOINT2_Link_mesh" pos="0 0.095 -0.25" euler="0 -0 0"/>
+              <geom class="collision" type="mesh" mesh="LARM_JOINT2_Link_mesh" pos="0 0.095 -0.25" euler="0 -0 0"/>
+              <body name="LARM_JOINT3_Link" pos="-0.03 0 0" euler="0 -0 0">
+                <joint type="hinge" name="LARM_JOINT3" axis="0 0 1" damping="0.2" range="-1.8326 2.87979" actuatorfrcrange="-100 100"/>
+                <inertial pos="-1.788e-05 -0.00395812 -0.20273" mass="0.457418" fullinertia="0.00069205 0.00068903 0.00013509 3e-08 5.2e-07 -1.915e-05"/>
+                <geom class="visual" material="body_black" type="mesh" mesh="LARM_JOINT3_Link_mesh" pos="-0.03 0 0" euler="0 -0 0"/>
+                <geom class="collision" type="mesh" mesh="LARM_JOINT3_Link_mesh" pos="-0.03 0 0" euler="0 -0 0"/>
+                <body name="LARM_JOINT4_Link" pos="0 0 -0.235" euler="0 -0 0">
+                  <joint type="hinge" name="LARM_JOINT4" axis="0 1 0" damping="0.2" range="-1.74533 1.74533" actuatorfrcrange="-100 100"/>
+                  <inertial pos="0.00243131 0.00379733 -0.0577036" mass="0.418434" fullinertia="0.00052016 0.00050569 0.00014004 1.69e-06 7.9e-06 -5.377e-05"/>
+                  <geom class="visual" material="body_black" type="mesh" mesh="LARM_JOINT4_Link_mesh" pos="0 0 -0.235" euler="0 -0 0"/>
+                  <geom class="collision" type="mesh" mesh="LARM_JOINT4_Link_mesh" pos="0 0 -0.235" euler="0 -0 0"/>
+                  <body name="LARM_JOINT5_Link" pos="-0.047 0 -0.09" euler="0 -0 0">
+                    <joint type="hinge" name="LARM_JOINT5" axis="1 0 0" damping="0.2" range="-2.84489 2.84489" actuatorfrcrange="-100 100"/>
+                    <inertial pos="-0.048476 -3.2e-06 -0.0388988" mass="1.05156" fullinertia="0.00194072 0.00209392 0.00035788 1.1e-07 -0.00042482 1.2e-07"/>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+        <body name="RARM_JOINT0_Link" pos="0 -0.145 0.370296" euler="0.261799 -0 0">
+          <joint type="hinge" name="RARM_JOINT0" axis="0 0 1" damping="0.2" range="-1.53589 1.53589" actuatorfrcrange="-150 150"/>
+          <inertial pos="-0.00226388 0.00521383 0.0156081" mass="1.32626" fullinertia="0.00207537 0.00240295 0.00141912 -0.00011276 8.927e-05 4.57e-05"/>
+          <geom class="visual" material="body_black" type="mesh" mesh="RARM_JOINT0_Link_mesh" pos="0 -0.145 0.370296" euler="0.261799 -0 0"/>
+          <geom class="collision" type="mesh" mesh="RARM_JOINT0_Link_mesh" pos="0 -0.145 0.370296" euler="0.261799 -0 0"/>
+          <body name="RARM_JOINT1_Link" pos="0 0 0" euler="0 -0 0">
+            <joint type="hinge" name="RARM_JOINT1" axis="0 1 0" damping="0.2" range="-2.44346 1.0472" actuatorfrcrange="-200 200"/>
+            <inertial pos="-5.236e-05 -0.0583134 -0.107061" mass="1.14898" fullinertia="0.0154168 0.0147117 0.0012658 -9.95417e-07 3.38147e-06 -0.00213719"/>
+            <geom class="visual" material="body_black" type="mesh" mesh="RARM_JOINT1_Link_mesh" pos="0 0 0" euler="0 -0 0"/>
+            <geom class="collision" type="mesh" mesh="RARM_JOINT1_Link_mesh" pos="0 0 0" euler="0 -0 0"/>
+            <body name="RARM_JOINT2_Link" pos="0 -0.095 -0.25" euler="0 -0 0">
+              <joint type="hinge" name="RARM_JOINT2" axis="0 1 0" damping="0.2" range="-2.75762 0" actuatorfrcrange="-100 100"/>
+              <inertial pos="-2.254e-05 -0.00167107 -0.0715116" mass="0.577518" fullinertia="0.00143966 0.00141763 0.0001972 3e-07 1.2e-06 7.596e-05"/>
+              <geom class="visual" material="body_black" type="mesh" mesh="RARM_JOINT2_Link_mesh" pos="0 -0.095 -0.25" euler="0 -0 0"/>
+              <geom class="collision" type="mesh" mesh="RARM_JOINT2_Link_mesh" pos="0 -0.095 -0.25" euler="0 -0 0"/>
+              <body name="RARM_JOINT3_Link" pos="-0.03 0 0" euler="0 -0 0">
+                <joint type="hinge" name="RARM_JOINT3" axis="0 0 1" damping="0.2" range="-2.87979 1.8326" actuatorfrcrange="-100 100"/>
+                <inertial pos="-1.788e-05 0.00395812 -0.20273" mass="0.457418" fullinertia="0.00069205 0.00068903 0.00013509 -3e-08 5.2e-07 1.915e-05"/>
+                <geom class="visual" material="body_black" type="mesh" mesh="RARM_JOINT3_Link_mesh" pos="-0.03 0 0" euler="0 -0 0"/>
+                <geom class="collision" type="mesh" mesh="RARM_JOINT3_Link_mesh" pos="-0.03 0 0" euler="0 -0 0"/>
+                <body name="RARM_JOINT4_Link" pos="0 0 -0.235" euler="0 -0 0">
+                  <joint type="hinge" name="RARM_JOINT4" axis="0 1 0" damping="0.2" range="-1.74533 1.74533" actuatorfrcrange="-100 100"/>
+                  <inertial pos="0.00243131 -0.00379733 -0.0577036" mass="0.418434" fullinertia="0.00052016 0.00050569 0.00014004 -1.69e-06 7.9e-06 5.377e-05"/>
+                  <geom class="visual" material="body_black" type="mesh" mesh="RARM_JOINT4_Link_mesh" pos="0 0 -0.235" euler="0 -0 0"/>
+                  <geom class="collision" type="mesh" mesh="RARM_JOINT4_Link_mesh" pos="0 0 -0.235" euler="0 -0 0"/>
+                  <body name="RARM_JOINT5_Link" pos="-0.047 0 -0.09" euler="0 -0 0">
+                    <joint type="hinge" name="RARM_JOINT5" axis="1 0 0" damping="0.2" range="-2.84489 2.84489" actuatorfrcrange="-100 100"/>
+                    <inertial pos="-0.048476 3.2e-06 -0.0388988" mass="1.05156" fullinertia="0.00194072 0.00209392 0.00035788 -1.1e-07 -0.00042482 -1.2e-07"/>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+  <actuator>
+    <motor name="CHEST_JOINT0_motor" joint="CHEST_JOINT0" gear="1" ctrlrange="-100 100" ctrllimited="true"/>
+    <motor name="HEAD_JOINT0_motor" joint="HEAD_JOINT0" gear="1" ctrlrange="-100 100" ctrllimited="true"/>
+    <motor name="HEAD_JOINT1_motor" joint="HEAD_JOINT1" gear="1" ctrlrange="-100 100" ctrllimited="true"/>
+    <motor name="LARM_JOINT0_motor" joint="LARM_JOINT0" gear="1" ctrlrange="-150 150" ctrllimited="true"/>
+    <motor name="LARM_JOINT1_motor" joint="LARM_JOINT1" gear="1" ctrlrange="-200 200" ctrllimited="true"/>
+    <motor name="LARM_JOINT2_motor" joint="LARM_JOINT2" gear="1" ctrlrange="-100 100" ctrllimited="true"/>
+    <motor name="LARM_JOINT3_motor" joint="LARM_JOINT3" gear="1" ctrlrange="-100 100" ctrllimited="true"/>
+    <motor name="LARM_JOINT4_motor" joint="LARM_JOINT4" gear="1" ctrlrange="-100 100" ctrllimited="true"/>
+    <motor name="LARM_JOINT5_motor" joint="LARM_JOINT5" gear="1" ctrlrange="-100 100" ctrllimited="true"/>
+    <motor name="RARM_JOINT0_motor" joint="RARM_JOINT0" gear="1" ctrlrange="-150 150" ctrllimited="true"/>
+    <motor name="RARM_JOINT1_motor" joint="RARM_JOINT1" gear="1" ctrlrange="-200 200" ctrllimited="true"/>
+    <motor name="RARM_JOINT2_motor" joint="RARM_JOINT2" gear="1" ctrlrange="-100 100" ctrllimited="true"/>
+    <motor name="RARM_JOINT3_motor" joint="RARM_JOINT3" gear="1" ctrlrange="-100 100" ctrllimited="true"/>
+    <motor name="RARM_JOINT4_motor" joint="RARM_JOINT4" gear="1" ctrlrange="-100 100" ctrllimited="true"/>
+    <motor name="RARM_JOINT5_motor" joint="RARM_JOINT5" gear="1" ctrlrange="-100 100" ctrllimited="true"/>
+  </actuator>
+  <keyframe>
+    <key name="home" qpos="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"/>
+  </keyframe>
+</mujoco>
